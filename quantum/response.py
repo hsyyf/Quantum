@@ -16,32 +16,39 @@ class Response(BaseResponse):
         self.headers["Server"] = "{} {}".format(__sever_name__, __version__)
 
 
-def text(body=None, status=200, reason=None, headers=None, content_type="text/plain", charset="utf-8"):
+def text(body=None, status=200, reason=None, headers=None,
+         content_type="text/plain", charset="utf-8"):
     if not isinstance(body, str):
         raise TypeError
-    return Response(body=body, status=status, reason=reason, headers=headers, content_type=content_type,
-                    charset=charset)
+    return Response(body=body, status=status, reason=reason, headers=headers,
+                    content_type=content_type, charset=charset)
 
 
-def json(body=None, status=200, reason=None, headers=None, content_type="application/json", charset="utf-8"):
+def json(body=None, status=200, reason=None, headers=None,
+         content_type="application/json", charset="utf-8"):
     if not isinstance(body, dict):
         raise TypeError
-    return Response(body=dumps(body), status=status, reason=reason, headers=headers, content_type=content_type,
+    return Response(body=dumps(body), status=status, reason=reason,
+                    headers=headers, content_type=content_type,
                     charset=charset)
 
 
-def xml(body=None, status=200, reason=None, headers=None, content_type="text/xml", charset="utf-8"):
-    return Response(body=body, status=status, reason=reason, headers=headers, content_type=content_type,
-                    charset=charset)
+def xml(body=None, status=200, reason=None, headers=None,
+        content_type="text/xml", charset="utf-8"):
+    return Response(body=body, status=status, reason=reason, headers=headers,
+                    content_type=content_type, charset=charset)
 
 
-def html(body=None, status=200, reason=None, headers=None, content_type="text/html", charset="utf-8"):
-    return Response(body=body, status=status, reason=reason, headers=headers, content_type=content_type,
-                    charset=charset)
+def html(body=None, status=200, reason=None, headers=None,
+         content_type="text/html", charset="utf-8"):
+    return Response(body=body, status=status, reason=reason, headers=headers,
+                    content_type=content_type, charset=charset)
 
 
 def file(location, status=200, reason=None, headers=None, filename=None):
     headers = headers or {}
     if filename:
-        headers["Content-Disposition"] = "attachment; filename='{}'".format(filename)
-    return BaseFileResponse(path=location, status=status, reason=reason, headers=headers)
+        headers["Content-Disposition"] = "attachment; filename='{}'".format(
+            filename)
+    return BaseFileResponse(path=location, status=status, reason=reason,
+                            headers=headers)

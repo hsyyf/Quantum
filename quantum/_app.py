@@ -27,11 +27,13 @@ class Quantum:
         if not port:
             port = self.config.get("port", None) or 9000
 
-        self.loop.run_until_complete(self.init_start(self.loop, host=host, port=port))
+        self.loop.run_until_complete(
+            self.init_start(self.loop, host=host, port=port))
         self.loop.run_forever()
 
     async def init_start(self, _loop, host, port):
-        await _loop.create_server(self._app.make_handler(), host=host, port=port)
+        await _loop.create_server(self._app.make_handler(), host=host,
+                                  port=port)
         print('Server started at http://{}:{}...'.format(host, port))
 
     def route(self, url, method=None):
