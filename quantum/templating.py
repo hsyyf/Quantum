@@ -2,8 +2,7 @@
 """
     author: Q.Y.
 """
-from jinja2 import Environment as BaseEnvironment, TemplateNotFound, \
-    PackageLoader, select_autoescape
+from jinja2 import Environment as BaseEnvironment, TemplateNotFound, PackageLoader, select_autoescape
 from .response import html
 
 

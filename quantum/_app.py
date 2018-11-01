@@ -9,12 +9,12 @@ from aiohttp import web
 
 
 class Quantum:
-    def __init__(self, name, loop=None):
+    def __init__(self, name, loop=None, config=None):
         self.name = name
         if not loop:
             self.loop = asyncio.get_event_loop()
         self._app = web.Application(loop=self.loop)
-        self.config = None
+        self.config = config
 
     def run(self, host=None, port=None):
 
@@ -45,3 +45,6 @@ class Quantum:
             return func
 
         return wrapper
+
+    def __call__(self, *args, **kwargs):
+        return self._app
